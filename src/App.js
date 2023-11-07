@@ -1,7 +1,6 @@
 import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Home, Login, Profile, Register, ResetPassword } from "./pages";
-import AboutPage from "./RoutePage/AboutPage";
 
 function Layout() {
   const { user } = useSelector((state) => state.user);
@@ -28,7 +27,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route exact path="/about" element={<AboutPage />} />
       </Routes>
     </div>
   );

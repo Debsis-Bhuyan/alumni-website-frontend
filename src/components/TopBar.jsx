@@ -60,13 +60,7 @@ const TopBar = () => {
       {/* ICONS */}
 
       <div className="flex gap-4 items-center text-ascent-1 text-md md:text-xl">
-        <div
-          className="hidden lg:flex text-sm text-ascent-1 items-center justify-center px-8 md:px-6 py-1 md:py-2 "
-        >
-          <div>
-            <Link to="/about">About</Link>
-          </div>
-        </div>
+        
         <button onClick={() => handleTheme()}>
           {theme ? <BsMoon /> : <BsSunFill />}
         </button>

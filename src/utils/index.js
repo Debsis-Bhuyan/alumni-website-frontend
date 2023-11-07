@@ -114,9 +114,7 @@ export const sendConnectionRequest = async (token, id) => {
       method: "POST",
       data: { requestTo: id },
     });
-    if (res?.message === "Friend Request already sent.") {
-      return "pending";
-    }
+    
     return;
   } catch (error) {
     console.log(error + "jjj");

@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { NoProfile } from "../assets";
 import {  BsPersonFillAdd } from "react-icons/bs";
-import { BiImages, BiSolidVideo } from "react-icons/bi";
+import { BiImages } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { apiRequest, detetePost, fetchPosts, getUserInfo, handleFileupload, likePost, sendConnectionRequest } from "../utils";
 import { UserLogin } from "../redux/userSlice";
@@ -27,7 +27,7 @@ const Home = () => {
   const [file, setFile] = useState(null);
   const [posting, setPosting] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [connectionResult, setConnectionResult  ]= useState("Add");
+  let connectionResult= "Add";
 
   const dispatch=useDispatch( );
 
@@ -113,7 +113,6 @@ const Home = () => {
   const handleConnectionRequest = async (id) => {
     try {
       const res = await sendConnectionRequest(user.token, id);
-      setConnectionResult(res);
       await fetchSuggestedConnection();
     } catch (error) {
       console.log(error);
@@ -211,38 +210,6 @@ const Home = () => {
                   <span>Image</span>
                 </label>
 
-                {/* <label
-                  className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
-                  htmlFor="videoUpload"
-                >
-                  <input
-                    type="file"
-                    data-max-size="5120"
-                    onChange={(e) => setFile(e.target.files[0])}
-                    className="hidden"
-                    id="videoUpload"
-                    accept=".mp4, .wav"
-                  />
-                  <BiSolidVideo />
-                  <span>Video</span>
-                </label> */}
-
-                {/* <label
-                  className="flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer"
-                  htmlFor="vgifUpload"
-                >
-                  <input
-                    type="file"
-                    data-max-size="5120"
-                    onChange={(e) => setFile(e.target.files[0])}
-                    className="hidden"
-                    id="vgifUpload"
-                    accept=".gif"
-                  />
-                  <BsFiletypeGif />
-                  <span>Gif</span>
-                </label> */}
-
                 <div>
                   {posting ? (
                     <Loading />
@@ -289,7 +256,7 @@ const Home = () => {
                 {connectionRequest?.map(({ _id, requestFrom: from }) => (
                   <div key={_id} className="flex items-center justify-between">
                     <Link
-                      to={"/profile/" + from._id}
+                      to={"/profile/" + from?._id}
                       className="w-full flex gap-4 items-center cursor-pointer"
                     >
                       <img
@@ -361,7 +328,7 @@ const Home = () => {
                         onClick={() => handleConnectionRequest(friend?._id)}
                       >
                         <BsPersonFillAdd size={20} className="text-[#0f52b6]" />
-                        <h3  className="text-[#0f52b6] flex items-cnter justify-between">{connectionResult}</h3>
+                        <h3  className="text-[#0f52b6] flex items-cnter justify-between"  >{connectionResult}</h3>
 
                       </button>
                     </div>
